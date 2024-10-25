@@ -24,9 +24,19 @@ repeatedValuesInR2: list[int] = [x for x in dataFrame["R2"].value_counts() if x 
 
 # Calculate R according to the formula
 if repeatedValuesInR1 or repeatedValuesInR2:
-    # Print number of repeated values by unpacking the list
-    print("Repeated value count in X:", *repeatedValuesInR1)
-    print("Repeated value count in Y:", *repeatedValuesInR2)
+    mCount = 1
+    while mCount <= len(repeatedValuesInR1):
+        print(f"m{mCount} = {repeatedValuesInR1[mCount - 1]}", end=", ")
+        mCount += 1
+    index = 0
+    while mCount <= len(repeatedValuesInR1) + len(repeatedValuesInR2):
+        print(f"m{mCount} = {repeatedValuesInR2[index]}", end="")
+        index += 1
+        mCount += 1
+        if mCount == len(repeatedValuesInR1) + len(repeatedValuesInR2) + 1:
+            print()
+        else:
+            print(", ", end="")
     # Print formula for R with repeated values
     print("R = 1 - (6(∑D^2", end="")
     # m[i] will be printed as per the number of total values repeated in the rank columns
